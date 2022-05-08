@@ -1,0 +1,81 @@
+plugins {
+    id 'java'
+    id 'maven-publish'
+    id 'java-library'
+    id 'net.minecrell.plugin-yml.bukkit' version '0.5.1'
+}
+
+group 'com.github.hibi_10000.plugins'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+    maven { url 'https://hub.spigotmc.org/nexus/content/groups/public' }
+}
+
+dependencies {
+    api 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
+    //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+//test {
+    //useJUnitPlatform()
+//}
+
+bukkit {
+    // Default values can be overridden if needed
+    name = rootProject.name
+    version = project.version
+    description = 'This is a autobackup plugin'
+    website = 'https://github.com/Hibi-10000'
+    author = 'Hibi_10000'
+    main = 'com.github.hibi_10000.plugins.autobackup.AutoBackup'
+
+    // API version (should be set for 1.13+)
+    apiVersion = '1.17'
+
+    // Other possible properties from plugin.yml (optional)
+    load = 'STARTUP' // or 'POSTWORLD'
+    //authors = ['Notch', 'Notch2']
+    //depend = ['WorldEdit']
+    //softDepend = ['Essentials']
+    //loadBefore = ['BrokenPlugin']
+    //prefix = 'TEST'
+    defaultPermission = 'OP' // 'TRUE', 'FALSE', 'OP' or 'NOT_OP'
+    //provides = ['TestPluginOldName', 'TestPlug']
+
+    commands {
+        'autobackup' {
+            description = 'Base Command'
+            aliases = ['abu']
+            permission = 'autobackup.command'
+            permissionMessage = 'Unknown command. Type "/help" for help.'
+            //usage = ''
+        }
+    }
+
+    permissions {
+        'autobackup.all' {
+            children = ['autobackup.command','autobackup.reload', 'autobackup.admin', 'autobackup.create'] // Defaults permissions to true
+            // You can also specify the values of the permissions
+            //childrenMap = ['test': false]
+        }
+        'autobackup.command' {
+            description = 'AutoBackup Command'
+            setDefault('OP');
+        }
+        'autobackup.reload' {
+            description = 'AutoBackup Reload command'
+            setDefault('OP')
+        }
+        'autobackup.backup' {
+            description = 'AutoBackup Backup command'
+            setDefault('OP')
+        }
+        'autobackup.save' {
+            description = 'AutoBackup Save command'
+            setDefault('OP')
+        }
+    }
+}
