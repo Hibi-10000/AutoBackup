@@ -1,0 +1,37 @@
+Backup:
+  enabled: true
+  timings:
+    type: times_of_day #interval or times_of_day
+    interval: 21600000 #ms(1000ms=1s) 21,600,000ms = 6h
+    times_of_day:
+      - 6:00:00
+      - 12:00:00
+      - 18:00:00
+      - 24:00:00
+
+Save:
+  PlayerData:
+    enabled: true
+    interval: 300000 #ms(1000ms = 1s) 300,000ms = 5m
+
+  WorldData:
+    enabled: true
+    interval: 900000 #ms(1000ms=1s) 900,000ms = 15m
+
+Restart:
+  enabled: true
+  #Please set "restart-script" of "spigot.yml" as follows
+  #restart-script: '.\start.bat' #Windows
+  #restart-script: './start.sh' #Unix
+  #Messages at restart can be set in "messages.restart" of "spigot.yml"
+  times_of_day:
+  #  - 5:00:00
+    - 17:00:00
+
+Reboot:
+  #You need to register the Spigot server start script with the startup
+  enabled: true
+  OS_Reboot_Command: 'shutdown /g /t 0 /d p:4:1' #Windows
+  #OS_Reboot_Command: 'shutdown -t 1 -r '             #Unix
+  times_of_day:
+    - 5:00:00

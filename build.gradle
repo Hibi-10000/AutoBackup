@@ -15,40 +15,34 @@ repositories {
 
 dependencies {
     api 'org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT'
-    //testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    //testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
-//test {
-    //useJUnitPlatform()
-//}
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
 
 bukkit {
-    // Default values can be overridden if needed
     name = rootProject.name
     version = project.version
     description = 'This is a autobackup plugin'
-    website = 'https://github.com/Hibi-10000'
+    website = 'https://github.com/Hibi-10000/AutoBackup'
     author = 'Hibi_10000'
     main = 'com.github.hibi_10000.plugins.autobackup.AutoBackup'
-
-    // API version (should be set for 1.13+)
     apiVersion = '1.17'
 
-    // Other possible properties from plugin.yml (optional)
     load = 'STARTUP' // or 'POSTWORLD'
-    //authors = ['Notch', 'Notch2']
-    //depend = ['WorldEdit']
-    //softDepend = ['Essentials']
-    //loadBefore = ['BrokenPlugin']
-    //prefix = 'TEST'
+    //authors = ['Auther1', 'Auther2']
+    //depend = ['Plugin']
+    //softDepend = ['Plugin']
+    //loadBefore = ['Plugin']
+    //prefix = 'Plugin'
     defaultPermission = 'OP' // 'TRUE', 'FALSE', 'OP' or 'NOT_OP'
-    //provides = ['TestPluginOldName', 'TestPlug']
+    //provides = ['Plugin1', 'Plugin2']
 
     commands {
         'autobackup' {
-            description = 'Base Command'
-            aliases = ['abu']
+            description = 'AutoBackup Base Command'
+            aliases = ['abu', 'ab']
             permission = 'autobackup.command'
             permissionMessage = 'Unknown command. Type "/help" for help.'
             //usage = ''
@@ -57,24 +51,32 @@ bukkit {
 
     permissions {
         'autobackup.all' {
-            children = ['autobackup.command','autobackup.reload', 'autobackup.admin', 'autobackup.create'] // Defaults permissions to true
+            children = ['autobackup.command', 'autobackup.reload', 'autobackup.save', 'autobackup.backup', 'autobackup.restart', 'autobackup.reboot'] // Defaults permissions to true
             // You can also specify the values of the permissions
             //childrenMap = ['test': false]
         }
         'autobackup.command' {
             description = 'AutoBackup Command'
-            setDefault('OP');
+            setDefault('OP')
         }
         'autobackup.reload' {
             description = 'AutoBackup Reload command'
+            setDefault('OP')
+        }
+        'autobackup.save' {
+            description = 'AutoBackup Save command'
             setDefault('OP')
         }
         'autobackup.backup' {
             description = 'AutoBackup Backup command'
             setDefault('OP')
         }
-        'autobackup.save' {
-            description = 'AutoBackup Save command'
+        'autobackup.restart' {
+            description = 'AutoBackup Restart command'
+            setDefault('OP')
+        }
+        'autobackup.reboot' {
+            description = 'AutoBackup Reboot command'
             setDefault('OP')
         }
     }
