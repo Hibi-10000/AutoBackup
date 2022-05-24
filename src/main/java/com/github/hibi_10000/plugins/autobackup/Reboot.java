@@ -32,7 +32,7 @@ public class Reboot {
 		//plugin.getLogger().log(Level.INFO, "§b90 seconds left until the server physically restarts...");
 		new BukkitRunnable() {
 			public void run() {
-				Bukkit.broadcastMessage("§7[AutoBackup] §r~ Server Physically Restart Execution ~");
+				Bukkit.broadcastMessage("§7[AutoBackup] §r～ Server Physically Restart Execution ～");
 				plugin.getLogger().log(Level.INFO, "§bStarting Physically Restart...");
 				reboot();
 				if (schedule) {schedule();}

@@ -22,30 +22,13 @@ public class Restart {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				Bukkit.broadcastMessage("§7[AutoBackup] §r~ Server Restart Execution ~");
+				Bukkit.broadcastMessage("§7[AutoBackup] §r～ Server Restart Execution ～");
 				plugin.getLogger().log(Level.INFO, "§bStarting Restart...");
 				restart();
 				if (reschedule) {schedule();}
 			}
 		}.runTaskLater(plugin, 1800);
 	}
-
-	/*public void firstschedule() {
-		try {
-			SimpleDateFormat parsesdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
-			SimpleDateFormat nowsdf = new SimpleDateFormat("yyyy/MM/dd");
-			long nexttime = 0;
-			for (String str : Config.getRestartTimes()) {
-				long time = parsesdf.parse(nowsdf.format(new Date()) + " " + str).getTime();
-				if (nexttime == 0) {nexttime = time;}
-				else if (new Date().getTime() < time && time < nexttime) {nexttime = time;}
-			}
-			SimpleDateFormat configsdf = new SimpleDateFormat("HH:mm:ss");
-			schedule(Config.getRestartTimes().indexOf(configsdf.format(new Date(nexttime))));
-		} catch (ParseException e) {
-			plugin.getLogger().log(Level.SEVERE, "Restart time setting is incorrect", e);
-		}
-	}*/
 
 	public void schedule() {
 		try {
